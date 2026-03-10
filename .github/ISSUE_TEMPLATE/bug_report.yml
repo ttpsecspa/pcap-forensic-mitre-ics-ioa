@@ -1,0 +1,103 @@
+name: Bug Report
+description: Report an issue with the prompt or documentation
+title: "[Bug]: "
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for reporting an issue. Please fill out the form below.
+
+  - type: dropdown
+    id: component
+    attributes:
+      label: Component
+      description: Which part of the project is affected?
+      options:
+        - Prompt (prompt_pcap_mitre_ics_ioa.md)
+        - Documentation (README, guides)
+        - IOA Catalog (indicators)
+        - MITRE ATT&CK Mapping
+        - Data Preparation Commands
+        - Report Structure
+        - Other
+    validations:
+      required: true
+
+  - type: dropdown
+    id: llm
+    attributes:
+      label: LLM Used
+      description: Which LLM did you use when encountering this issue?
+      options:
+        - Claude (Opus/Sonnet)
+        - GPT-4 / GPT-4 Turbo / GPT-4o
+        - Gemini 1.5 Pro
+        - Llama 3.x
+        - Mistral Large
+        - Other (specify in description)
+    validations:
+      required: true
+
+  - type: textarea
+    id: description
+    attributes:
+      label: Description
+      description: Describe the issue clearly
+      placeholder: |
+        What happened? What did you expect to happen?
+    validations:
+      required: true
+
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to Reproduce
+      description: How can we reproduce this issue?
+      placeholder: |
+        1. Used the prompt with [type of data]
+        2. The LLM generated [unexpected output]
+        3. Expected [correct behavior]
+    validations:
+      required: true
+
+  - type: textarea
+    id: input-type
+    attributes:
+      label: Input Data Type
+      description: What type of input data did you provide?
+      placeholder: |
+        e.g., tshark export of Modbus traffic, Zeek conn.log, Suricata alerts
+    validations:
+      required: false
+
+  - type: dropdown
+    id: severity
+    attributes:
+      label: Severity
+      description: How severe is this issue?
+      options:
+        - Critical - Produces incorrect forensic conclusions
+        - High - Missing or wrong MITRE mapping
+        - Medium - Incomplete analysis or formatting issues
+        - Low - Minor documentation or wording issue
+    validations:
+      required: true
+
+  - type: textarea
+    id: additional
+    attributes:
+      label: Additional Context
+      description: Any additional context, screenshots, or output excerpts (anonymized)
+    validations:
+      required: false
+
+  - type: checkboxes
+    id: checklist
+    attributes:
+      label: Checklist
+      options:
+        - label: I have anonymized all data in this report (no real IPs, hostnames, or infrastructure data)
+          required: true
+        - label: I have checked the existing issues for duplicates
+          required: true
