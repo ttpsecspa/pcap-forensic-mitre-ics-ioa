@@ -1,0 +1,26 @@
+# OS
+.DS_Store
+Thumbs.db
+
+# IDEs
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Datos sensibles - NUNCA subir capturas reales
+*.pcap
+*.pcapng
+*.cap
+*.log
+
+# Excepción: ejemplos de laboratorio
+!examples/*.pcap
+
+# Node
+node_modules/
+
+# Temporales
+*.tmp
+*.bak
+~$*
