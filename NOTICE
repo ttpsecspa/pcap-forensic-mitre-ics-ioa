@@ -1,0 +1,54 @@
+NOTICE
+
+PCAP Forensic Analyzer - MITRE ATT&CK for ICS + IOA Correlation
+Copyright 2026 Sebastian Vargas Yanez / TTPSEC SpA / PurpleTeam Academy
+
+This project is licensed under Creative Commons Attribution-ShareAlike 4.0
+International (CC BY-SA 4.0).
+
+------------------------------------------------------------------------
+Third-Party Frameworks and Standards Referenced
+------------------------------------------------------------------------
+
+MITRE ATT&CK for ICS
+  Source: https://attack.mitre.org/matrices/ics/
+  License: Creative Commons Attribution 3.0 Unported (CC BY 3.0)
+  Copyright: The MITRE Corporation
+  Usage: Technique IDs, tactic names, and group references are used for
+         mapping forensic findings. MITRE ATT&CK is a registered trademark
+         of The MITRE Corporation.
+
+ICS Cyber Kill Chain
+  Source: SANS Institute
+  Authors: Michael J. Assante, Robert M. Lee
+  Usage: Dual-stage kill chain model referenced for attack chain
+         reconstruction methodology.
+
+IEC 62443 (Industrial Automation and Control Systems Security)
+  Source: International Electrotechnical Commission (IEC)
+  Usage: Security level references (SL-T) for impact classification.
+
+NIST SP 800-82 Rev. 3 (Guide to OT Security)
+  Source: National Institute of Standards and Technology
+  Usage: Control references in recommendations section.
+
+Ley 21.663 (Marco sobre Ciberseguridad e Infraestructura Critica)
+  Source: Republica de Chile
+  Usage: Incident reporting classification criteria.
+
+Purdue Enterprise Reference Architecture (PERA)
+  Source: Purdue University / ISA-95
+  Usage: Network level classification model (L0-L5 + iDMZ).
+
+------------------------------------------------------------------------
+Third-Party Tools Referenced (Not Bundled)
+------------------------------------------------------------------------
+
+The following tools are referenced in data preparation documentation.
+They are NOT included in or distributed with this project:
+
+  Wireshark / tshark  - GNU General Public License v2
+  Zeek                - BSD 3-Clause License
+  Suricata            - GNU General Public License v2
+  Snort               - GNU General Public License v2
+  NetworkMiner        - CC BY-NC-SA 2.5 (Free Edition)
