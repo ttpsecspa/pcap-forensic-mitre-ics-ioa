@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 80" width="600" height="80">
+  <defs>
+    <linearGradient id="logoBg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#080b12;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#0d1520;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+
+  <rect width="600" height="80" fill="url(#logoBg)" rx="8" />
+
+  <!-- Shield icon -->
+  <g transform="translate(20, 15)">
+    <path d="M0 8 L25 0 L50 8 L50 30 C50 50 25 60 25 60 C25 60 0 50 0 30 Z"
+          fill="none" stroke="#dc2626" stroke-width="2" />
+    <path d="M16 28 L23 35 L36 20" fill="none" stroke="#dc2626" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" />
+  </g>
+
+  <!-- Project name -->
+  <text x="85" y="38" font-family="Segoe UI, Arial, sans-serif" font-size="22" font-weight="700" fill="#ffffff" letter-spacing="0.5">
+    PCAP Forensic Analyzer
+  </text>
+
+  <!-- Tagline -->
+  <text x="85" y="58" font-family="Segoe UI, Arial, sans-serif" font-size="12" fill="#94a3b8">
+    MITRE ATT&amp;CK for ICS + IOA Correlation
+  </text>
+</svg>

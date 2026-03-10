@@ -1,0 +1,98 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 300" width="1200" height="300">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#080b12;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#0d1520;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="redGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#dc2626;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#ef4444;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="lineGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#dc2626;stop-opacity:0" />
+      <stop offset="50%" style="stop-color:#dc2626;stop-opacity:0.6" />
+      <stop offset="100%" style="stop-color:#dc2626;stop-opacity:0" />
+    </linearGradient>
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1200" height="300" fill="url(#bgGrad)" />
+
+  <!-- Grid pattern -->
+  <g opacity="0.05" stroke="#ffffff" stroke-width="0.5">
+    <line x1="0" y1="60" x2="1200" y2="60" />
+    <line x1="0" y1="120" x2="1200" y2="120" />
+    <line x1="0" y1="180" x2="1200" y2="180" />
+    <line x1="0" y1="240" x2="1200" y2="240" />
+    <line x1="200" y1="0" x2="200" y2="300" />
+    <line x1="400" y1="0" x2="400" y2="300" />
+    <line x1="600" y1="0" x2="600" y2="300" />
+    <line x1="800" y1="0" x2="800" y2="300" />
+    <line x1="1000" y1="0" x2="1000" y2="300" />
+  </g>
+
+  <!-- Network nodes (industrial) -->
+  <g opacity="0.12">
+    <!-- PLC nodes -->
+    <rect x="80" y="70" width="24" height="24" rx="3" fill="none" stroke="#dc2626" stroke-width="1.5" />
+    <rect x="1080" y="200" width="24" height="24" rx="3" fill="none" stroke="#dc2626" stroke-width="1.5" />
+    <rect x="950" y="60" width="24" height="24" rx="3" fill="none" stroke="#3b82f6" stroke-width="1.5" />
+    <rect x="150" y="220" width="24" height="24" rx="3" fill="none" stroke="#3b82f6" stroke-width="1.5" />
+    <!-- Connection lines -->
+    <line x1="104" y1="82" x2="150" y2="232" stroke="#dc2626" stroke-width="0.5" stroke-dasharray="4,4" />
+    <line x1="974" y1="72" x2="1092" y2="212" stroke="#3b82f6" stroke-width="0.5" stroke-dasharray="4,4" />
+  </g>
+
+  <!-- Accent line top -->
+  <rect x="0" y="0" width="1200" height="2" fill="url(#redGrad)" />
+
+  <!-- Shield icon -->
+  <g transform="translate(160, 105)" filter="url(#glow)">
+    <path d="M0 10 L30 0 L60 10 L60 40 C60 65 30 80 30 80 C30 80 0 65 0 40 Z"
+          fill="none" stroke="#dc2626" stroke-width="2.5" opacity="0.9" />
+    <path d="M20 35 L28 43 L42 25" fill="none" stroke="#dc2626" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
+  </g>
+
+  <!-- Main title -->
+  <text x="260" y="130" font-family="Segoe UI, Arial, sans-serif" font-size="36" font-weight="700" fill="#ffffff" letter-spacing="1">
+    PCAP Forensic Analyzer
+  </text>
+
+  <!-- Subtitle -->
+  <text x="260" y="165" font-family="Segoe UI, Arial, sans-serif" font-size="18" fill="#94a3b8" letter-spacing="0.5">
+    MITRE ATT&amp;CK for ICS v14 + IOA Correlation
+  </text>
+
+  <!-- Separator line -->
+  <rect x="260" y="180" width="400" height="1" fill="url(#lineGrad)" />
+
+  <!-- Tags -->
+  <g font-family="Segoe UI, Arial, sans-serif" font-size="11" letter-spacing="0.5">
+    <rect x="260" y="195" width="90" height="22" rx="4" fill="#dc2626" opacity="0.15" />
+    <text x="305" y="210" fill="#dc2626" text-anchor="middle">OT / ICS</text>
+
+    <rect x="360" y="195" width="80" height="22" rx="4" fill="#3b82f6" opacity="0.15" />
+    <text x="400" y="210" fill="#60a5fa" text-anchor="middle">FORENSICS</text>
+
+    <rect x="450" y="195" width="65" height="22" rx="4" fill="#8b5cf6" opacity="0.15" />
+    <text x="482" y="210" fill="#a78bfa" text-anchor="middle">29 IOA</text>
+
+    <rect x="525" y="195" width="100" height="22" rx="4" fill="#059669" opacity="0.15" />
+    <text x="575" y="210" fill="#34d399" text-anchor="middle">AI-POWERED</text>
+  </g>
+
+  <!-- Author line -->
+  <text x="260" y="252" font-family="Segoe UI, Arial, sans-serif" font-size="12" fill="#475569">
+    TTPSEC SpA | PurpleTeam Academy
+  </text>
+
+  <!-- Accent line bottom -->
+  <rect x="0" y="298" width="1200" height="2" fill="url(#redGrad)" />
+</svg>
