@@ -1,0 +1,111 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  markdown-lint:
+    name: Markdown Lint
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Lint Markdown files
+        uses: DavidAnson/markdownlint-cli2-action@v19
+        with:
+          globs: |
+            **/*.md
+            !docs/**
+
+  link-check:
+    name: Link Check
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Check links in Markdown
+        uses: lycheeverse/lychee-action@v2
+        with:
+          args: >-
+            --no-progress
+            --exclude-mail
+            --exclude "^https://github.com/TU_USUARIO"
+            "**/*.md"
+          fail: true
+
+  validate-prompt:
+    name: Validate Prompt Structure
+    strategy:
+      matrix:
+        os: [ubuntu-latest, windows-latest]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Check prompt file exists and is non-empty
+        shell: bash
+        run: |
+          PROMPT="prompts/prompt_pcap_mitre_ics_ioa.md"
+          if [ ! -f "$PROMPT" ]; then
+            echo "ERROR: Prompt file not found: $PROMPT"
+            exit 1
+          fi
+          if [ ! -s "$PROMPT" ]; then
+            echo "ERROR: Prompt file is empty: $PROMPT"
+            exit 1
+          fi
+          echo "Prompt file OK: $(wc -l < "$PROMPT") lines"
+
+      - name: Validate prompt contains required sections
+        shell: bash
+        run: |
+          PROMPT="prompts/prompt_pcap_mitre_ics_ioa.md"
+          ERRORS=0
+
+          check_section() {
+            if ! grep -q "$1" "$PROMPT"; then
+              echo "MISSING: $2"
+              ERRORS=$((ERRORS + 1))
+            else
+              echo "OK: $2"
+            fi
+          }
+
+          check_section "ROL Y CONTEXTO" "Role definition"
+          check_section "FASE 1" "Phase 1 - Environment Reconnaissance"
+          check_section "FASE 2" "Phase 2 - Protocol Analysis"
+          check_section "FASE 3" "Phase 3 - IOA Detection"
+          check_section "FASE 4" "Phase 4 - MITRE ATT&CK Mapping"
+          check_section "FASE 5" "Phase 5 - Kill Chain"
+          check_section "FASE 6" "Phase 6 - Impact Evaluation"
+          check_section "IOA-REC-01" "IOA Reconnaissance indicators"
+          check_section "IOA-ACC-01" "IOA Access indicators"
+          check_section "IOA-MAN-01" "IOA Manipulation indicators"
+          check_section "IOA-C2-01" "IOA C2 indicators"
+          check_section "IOA-EVA-01" "IOA Evasion indicators"
+          check_section "MITRE ATT&CK" "MITRE ATT&CK reference"
+          check_section "ESTRUCTURA DEL INFORME" "Report structure"
+
+          if [ $ERRORS -gt 0 ]; then
+            echo ""
+            echo "FAILED: $ERRORS required sections missing"
+            exit 1
+          fi
+          echo ""
+          echo "All required sections present"
+
+      - name: Count IOA indicators
+        shell: bash
+        run: |
+          PROMPT="prompts/prompt_pcap_mitre_ics_ioa.md"
+          IOA_COUNT=$(grep -c "IOA-[A-Z]*-[0-9]*" "$PROMPT" || true)
+          echo "IOA references found: $IOA_COUNT"
+          if [ "$IOA_COUNT" -lt 29 ]; then
+            echo "WARNING: Expected at least 29 IOA references, found $IOA_COUNT"
+          fi

@@ -1,0 +1,87 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    name: Create Release
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Get version from tag
+        id: version
+        run: echo "VERSION=${GITHUB_REF#refs/tags/}" >> "$GITHUB_OUTPUT"
+
+      - name: Build release archive
+        run: |
+          VERSION="${{ steps.version.outputs.VERSION }}"
+          ARCHIVE_NAME="pcap-forensic-mitre-ics-ioa-${VERSION}"
+
+          mkdir -p "dist/${ARCHIVE_NAME}"
+
+          cp -r prompts/ "dist/${ARCHIVE_NAME}/prompts/"
+          cp -r docs/ "dist/${ARCHIVE_NAME}/docs/"
+          cp -r assets/ "dist/${ARCHIVE_NAME}/assets/"
+          cp -r examples/ "dist/${ARCHIVE_NAME}/examples/"
+          cp README.md LICENSE CHANGELOG.md NOTICE "dist/${ARCHIVE_NAME}/"
+
+          cd dist
+          tar -czf "${ARCHIVE_NAME}.tar.gz" "${ARCHIVE_NAME}/"
+          zip -r "${ARCHIVE_NAME}.zip" "${ARCHIVE_NAME}/"
+
+      - name: Generate checksums
+        run: |
+          cd dist
+          sha256sum *.tar.gz *.zip > SHA256SUMS.txt
+          echo "Checksums:"
+          cat SHA256SUMS.txt
+
+      - name: Extract release notes from CHANGELOG
+        id: notes
+        run: |
+          VERSION="${{ steps.version.outputs.VERSION }}"
+          SEMVER="${VERSION#v}"
+
+          NOTES=$(awk "/^## \[${SEMVER}\]/{flag=1; next} /^## \[/{flag=0} flag" CHANGELOG.md)
+
+          if [ -z "$NOTES" ]; then
+            NOTES="Release ${VERSION}"
+          fi
+
+          {
+            echo "NOTES<<EOF"
+            echo "$NOTES"
+            echo "EOF"
+          } >> "$GITHUB_OUTPUT"
+
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          name: ${{ steps.version.outputs.VERSION }}
+          body: |
+            ${{ steps.notes.outputs.NOTES }}
+
+            ---
+
+            ## Verification
+
+            Verify the integrity of downloaded files:
+
+            ```bash
+            sha256sum -c SHA256SUMS.txt
+            ```
+          files: |
+            dist/*.tar.gz
+            dist/*.zip
+            dist/SHA256SUMS.txt
+          draft: false
+          prerelease: false
