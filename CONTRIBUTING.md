@@ -1,60 +1,83 @@
-# Guía de Contribución
+# Guia de Contribucion
 
-¡Gracias por tu interés en contribuir a este proyecto!
+Gracias por tu interes en contribuir a este proyecto. Por favor, lee nuestro [Codigo de Conducta](CODE_OF_CONDUCT.md) antes de participar.
 
-## ¿Cómo puedo contribuir?
+## Como puedo contribuir
 
 ### 1. Nuevos IOA (Indicadores de Ataque)
 
-Si has identificado un patrón de ataque en entornos OT/ICS que no está cubierto por los 29 IOA actuales:
+Si has identificado un patron de ataque en entornos OT/ICS que no esta cubierto por los 29 IOA actuales:
 
-- Usa el formato de nomenclatura: `IOA-[CATEGORÍA]-[NÚMERO]`
-- Categorías válidas: `REC` (Reconocimiento), `ACC` (Acceso), `MAN` (Manipulación), `C2` (Comando y Control), `EVA` (Evasión)
-- Incluye una descripción clara y los indicadores de red observables
-- Si es posible, referencia la técnica MITRE ATT&CK for ICS correspondiente
+- Usa el formato de nomenclatura: `IOA-[CATEGORIA]-[NUMERO]`
+- Categorias validas: `REC` (Reconocimiento), `ACC` (Acceso), `MAN` (Manipulacion), `C2` (Comando y Control), `EVA` (Evasion)
+- Incluye una descripcion clara y los indicadores de red observables
+- Si es posible, referencia la tecnica MITRE ATT&CK for ICS correspondiente
 
 ### 2. Protocolos Industriales
 
-Para agregar soporte de análisis de nuevos protocolos:
+Para agregar soporte de analisis de nuevos protocolos:
 
 - Documenta los function codes / service requests relevantes
 - Clasifica operaciones como normales vs potencialmente maliciosas
-- Incluye comandos tshark/Zeek para extracción
-- Agrega al catálogo de puertos industriales
+- Incluye comandos tshark/Zeek para extraccion
+- Agrega al catalogo de puertos industriales
 
 ### 3. Mejoras al Mapeo MITRE
 
-- Nuevas técnicas de ATT&CK for ICS
-- Correcciones de IDs de técnicas
+- Nuevas tecnicas de ATT&CK for ICS
+- Correcciones de IDs de tecnicas
 - Nuevos procedimientos observados
-- Correlación con nuevos grupos APT
+- Correlacion con nuevos grupos APT
 
 ### 4. Traducciones
 
-- El prompt principal está en español
-- Se aceptan traducciones a inglés, portugués y otros idiomas
-- Mantener términos técnicos en inglés cuando son estándar
+- El prompt principal esta en espanol
+- Se aceptan traducciones a ingles, portugues y otros idiomas
+- Mantener terminos tecnicos en ingles cuando son estandar
 
 ### 5. Ejemplos
 
-- Salidas de análisis **anonimizadas** (sin IPs reales, sin datos de clientes)
+- Salidas de analisis **anonimizadas** (sin IPs reales, sin datos de clientes)
 - Capturas PCAP de laboratorio para testing
 - Screenshots de informes generados
+
+## Setup Local
+
+```bash
+git clone https://github.com/ttpsecspa/pcap-forensic-mitre-ics-ioa.git
+cd pcap-forensic-mitre-ics-ioa
+```
+
+No se requiere instalacion de dependencias. El proyecto es documentacion y prompts.
 
 ## Proceso de Pull Request
 
 1. Fork el repositorio
 2. Crea una rama descriptiva (`feature/ioa-goose-protocol`, `fix/mitre-id-correction`)
 3. Haz tus cambios
-4. Asegúrate de que el prompt sigue siendo funcional (pruébalo con un LLM)
-5. Envía el PR con una descripción clara de los cambios
+4. Asegurate de que el prompt sigue siendo funcional (pruebalo con un LLM)
+5. Verifica que los archivos Markdown no tienen errores de formato
+6. Actualiza el CHANGELOG.md con tus cambios
+7. Envia el PR con una descripcion clara usando la plantilla provista
 
-## Código de Conducta
+## Estilo de Commits
 
-- Respeta a todos los contribuidores
-- Mantén el foco en ciberseguridad OT/ICS
-- No incluyas datos reales de clientes o infraestructura
-- No incluyas exploits funcionales o herramientas ofensivas
+Usamos [Conventional Commits](https://www.conventionalcommits.org/):
+
+```
+feat: agrega IOA para protocolo GOOSE
+fix: corrige ID de tecnica MITRE T0869
+docs: mejora seccion de preparacion de datos
+```
+
+Tipos validos: `feat`, `fix`, `docs`, `chore`, `refactor`
+
+## Que NO incluir
+
+- Datos reales de clientes o infraestructura de produccion
+- Exploits funcionales o herramientas ofensivas
+- Capturas PCAP de redes de produccion sin anonimizar
+- Contenido que viole la politica de divulgacion responsable
 
 ## Contacto
 

@@ -1,26 +1,44 @@
 # OS
 .DS_Store
+Desktop.ini
 Thumbs.db
+ehthumbs.db
+._*
 
 # IDEs
 .vscode/
 .idea/
 *.swp
 *.swo
+*.sublime-project
+*.sublime-workspace
 
 # Datos sensibles - NUNCA subir capturas reales
 *.pcap
 *.pcapng
 *.cap
 *.log
+*.evt
+*.evtx
 
-# Excepción: ejemplos de laboratorio
+# Excepcion: ejemplos de laboratorio
 !examples/*.pcap
 
-# Node
+# Node (si se usa para tooling)
 node_modules/
+
+# Python (si se usa para tooling)
+__pycache__/
+*.pyc
+.venv/
+venv/
+
+# Build / Distribution
+dist/
+build/
 
 # Temporales
 *.tmp
 *.bak
 ~$*
+*.~*
