@@ -1,38 +1,46 @@
 <div align="center">
 
-# 🔴 PCAP Forensic Analyzer — MITRE ATT&CK for ICS + IOA Correlation
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="assets/banner-dark.svg" />
+  <source media="(prefers-color-scheme: light)" srcset="assets/banner-dark.svg" />
+  <img alt="PCAP Forensic Analyzer" src="assets/banner-dark.svg" width="100%" />
+</picture>
 
-### AI-Powered Prompt for OT/ICS Network Traffic Forensic Analysis
+<br />
 
 [![License: CC BY-SA 4.0](https://img.shields.io/badge/License-CC%20BY--SA%204.0-lightgrey.svg)](https://creativecommons.org/licenses/by-sa/4.0/)
+[![Version](https://img.shields.io/badge/version-2.0.0-blue.svg)](CHANGELOG.md)
 [![MITRE ATT&CK](https://img.shields.io/badge/MITRE%20ATT%26CK-ICS%20v14-red)](https://attack.mitre.org/matrices/ics/)
-[![IEC 62443](https://img.shields.io/badge/IEC%2062443-Compliant-blue)]()
-[![NIST SP 800-82](https://img.shields.io/badge/NIST%20SP%20800--82-Rev.3-green)]()
-[![Ley 21.663](https://img.shields.io/badge/Ley%2021.663-Chile-orange)]()
+[![IEC 62443](https://img.shields.io/badge/IEC%2062443-Compliant-blue)](https://www.iec.ch/cyber-security)
+[![NIST SP 800-82](https://img.shields.io/badge/NIST%20SP%20800--82-Rev.3-green)](https://csrc.nist.gov/pubs/sp/800/82/r3/final)
+[![Ley 21.663](https://img.shields.io/badge/Ley%2021.663-Chile-orange)](https://www.bcn.cl/leychile/navegar?idNorma=1202434)
+[![CI](https://img.shields.io/github/actions/workflow/status/ttpsecspa/pcap-forensic-mitre-ics-ioa/ci.yml?label=CI)](https://github.com/ttpsecspa/pcap-forensic-mitre-ics-ioa/actions/workflows/ci.yml)
 
-<br>
+**Un prompt de ingenieria avanzada que transforma cualquier LLM en un analista forense senior de trafico de red OT/ICS, generando informes completos con mapeo MITRE ATT&CK for ICS y correlacion de Indicadores de Ataque (IOA).**
 
-**Un prompt de ingeniería avanzada que transforma cualquier LLM en un analista forense senior de tráfico de red OT/ICS, generando informes completos con mapeo MITRE ATT&CK for ICS y correlación de Indicadores de Ataque (IOA).**
-
-[Prompt Completo](#-prompt-completo) · [Catálogo IOA](#-catálogo-de-indicadores-de-ataque-ioa) · [Uso Rápido](#-uso-rápido) · [Ejemplos](#-ejemplos)
+[Prompt Completo](#-prompt-completo) · [Catalogo IOA](#-catalogo-de-indicadores-de-ataque-ioa) · [Uso Rapido](#-uso-rapido) · [Arquitectura](#-arquitectura) · [Contribuir](#-contribuir)
 
 </div>
 
 ---
 
-## 📋 Tabla de Contenidos
+## Tabla de Contenidos
 
-- [¿Qué es esto?](#-qué-es-esto)
-- [¿Por qué es diferente?](#-por-qué-es-diferente)
-- [Uso Rápido](#-uso-rápido)
-- [Preparación de Datos](#-preparación-de-datos)
+- [Que es esto](#-que-es-esto)
+- [Por que es diferente](#-por-que-es-diferente)
+- [Uso Rapido](#-uso-rapido)
+- [Preparacion de Datos](#-preparacion-de-datos)
 - [Prompt Completo](#-prompt-completo)
-- [Catálogo de Indicadores de Ataque (IOA)](#-catálogo-de-indicadores-de-ataque-ioa)
-- [Metodología de 6 Fases](#-metodología-de-6-fases)
+- [Catalogo de Indicadores de Ataque (IOA)](#-catalogo-de-indicadores-de-ataque-ioa)
+- [Metodologia de 6 Fases](#-metodologia-de-6-fases)
+- [Arquitectura](#-arquitectura)
+- [Estructura del Proyecto](#-estructura-del-proyecto)
 - [Estructura del Informe Generado](#-estructura-del-informe-generado)
 - [Compatibilidad con LLMs](#-compatibilidad-con-llms)
 - [Casos de Uso](#-casos-de-uso)
+- [Verificacion de Descargas](#-verificacion-de-descargas)
 - [Contribuir](#-contribuir)
+- [Seguridad](#-seguridad)
 - [Autor](#-autor)
 - [Licencia](#-licencia)
 
@@ -291,7 +299,50 @@ El prompt genera un informe de **10 secciones**:
 
 ---
 
-## 💼 Casos de Uso
+## Arquitectura
+
+<div align="center">
+<img src="assets/architecture.svg" alt="Architecture Diagram" width="100%" />
+</div>
+
+---
+
+## Estructura del Proyecto
+
+```
+pcap-forensic-mitre-ics-ioa/
+├── prompts/
+│   └── prompt_pcap_mitre_ics_ioa.md   # Prompt principal (copiar y pegar en LLM)
+├── docs/
+│   └── PROMPT_PCAP_MITRE_ICS_IOA_v2.docx  # Version DOCX profesional
+├── examples/
+│   └── README.md                       # Guia para contribuir ejemplos
+├── assets/
+│   ├── banner-dark.svg                 # Banner del proyecto
+│   ├── logo.svg                        # Logo horizontal
+│   └── architecture.svg                # Diagrama de arquitectura
+├── .github/
+│   ├── workflows/
+│   │   ├── ci.yml                      # CI: lint, links, validacion de prompt
+│   │   └── release.yml                 # Release: empaquetado + checksums
+│   ├── ISSUE_TEMPLATE/
+│   │   ├── bug_report.yml              # Template para reportar bugs
+│   │   └── feature_request.yml         # Template para solicitar features
+│   ├── PULL_REQUEST_TEMPLATE.md        # Checklist para PRs
+│   └── dependabot.yml                  # Actualizacion automatica de actions
+├── README.md                           # Este archivo
+├── LICENSE                             # CC BY-SA 4.0
+├── CHANGELOG.md                        # Historial de cambios
+├── CONTRIBUTING.md                     # Guia de contribucion
+├── CODE_OF_CONDUCT.md                  # Codigo de conducta
+├── SECURITY.md                         # Politica de seguridad
+├── NOTICE                              # Licencias de terceros y atribuciones
+└── .gitignore                          # Archivos excluidos
+```
+
+---
+
+## Casos de Uso
 
 - **Respuesta a incidentes** en plantas industriales, utilities, puertos, energía
 - **Auditorías de seguridad OT** con evidencia de tráfico de red
@@ -303,7 +354,21 @@ El prompt genera un informe de **10 secciones**:
 
 ---
 
-## 🤝 Contribuir
+## Verificacion de Descargas
+
+Cada release incluye checksums SHA-256 para verificar la integridad de los archivos descargados:
+
+```bash
+# Descargar SHA256SUMS.txt junto con el archivo
+# Verificar integridad
+sha256sum -c SHA256SUMS.txt
+```
+
+Los checksums se generan automaticamente en el pipeline de CI/CD y se publican con cada GitHub Release.
+
+---
+
+## Contribuir
 
 ¡Las contribuciones son bienvenidas! Puedes:
 
@@ -331,7 +396,15 @@ git push origin feature/nuevo-ioa
 
 ---
 
-## 👤 Autor
+## Seguridad
+
+Para reportar vulnerabilidades de seguridad, consulta [SECURITY.md](SECURITY.md).
+
+No abras issues publicos para problemas de seguridad.
+
+---
+
+## Autor
 
 **Sebastián Vargas Yáñez**
 
