@@ -14,7 +14,7 @@ jobs:
     name: Markdown Lint
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
 
       - name: Lint Markdown files
         uses: DavidAnson/markdownlint-cli2-action@v19
@@ -27,7 +27,7 @@ jobs:
     name: Link Check
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
 
       - name: Check links in Markdown
         uses: lycheeverse/lychee-action@v2
@@ -46,7 +46,7 @@ jobs:
         os: [ubuntu-latest, windows-latest]
     runs-on: ${{ matrix.os }}
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
 
       - name: Check prompt file exists and is non-empty
         shell: bash
